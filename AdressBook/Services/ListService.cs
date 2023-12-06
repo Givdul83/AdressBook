@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace AdressBook.Services
 {
@@ -24,9 +25,22 @@ namespace AdressBook.Services
             return persons;
             
         }
+        public Person SearchEmail(string searchedEmail) 
+        {
+
+            
+            {
+             return  persons.FirstOrDefault(x => x.Email == searchedEmail);
+            }
+        }
         public void AddPerson(Person person)
         {
             persons.Add(person);
+        }
+
+        public void RemovePerson(Person person) 
+        {
+            persons.Remove(person);
         }
 
       

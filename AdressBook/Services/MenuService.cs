@@ -1,6 +1,8 @@
-﻿using AdressBook.Models;
+﻿using AdressBook.Interfaces;
+using AdressBook.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,15 +58,42 @@ namespace AdressBook.Services
                             Console.WriteLine($"City: {person.City}");
                             Console.WriteLine();
                             Console.WriteLine();
-                            Console.ReadKey();  
 
-                        }
+                            index++;
+                            }
+                        Console.ReadKey();
                         break;
 
-                    //case "2":
-                    //    Console.Clear();
-                    //    ShowSpecificContact();
-                    //    break;
+                    case "2":
+                        Console.Clear();
+                        Console.Write("Please enter email of person you are searching for: ");
+                        string searchedEmail = Console.ReadLine() ?? "";
+                        Console.WriteLine();
+                        Person foundPerson= listService.SearchEmail(searchedEmail);
+
+                        if (foundPerson != null)
+                        {
+                            Console.WriteLine($"Name:  {foundPerson.FirstName} {foundPerson.LastName}");
+                            Console.WriteLine();
+                            Console.WriteLine($"Email: {foundPerson.Email}");
+                            Console.WriteLine();
+                            Console.WriteLine($"Phone: {foundPerson.PhoneNumber}");
+                            Console.WriteLine();
+                            Console.WriteLine($"Adress: {foundPerson.StreetName} {foundPerson.StreetNumber}");
+                            Console.WriteLine();
+                            Console.WriteLine($"City: {foundPerson.City}");
+                            Console.WriteLine();
+                            Console.ReadKey();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Person not Found, press any key to return to main menu");
+                            Console.ReadKey();
+                            break;
+                        }
+
+                        
 
                     //case "3":
                     //    Console.Clear();
@@ -76,19 +105,19 @@ namespace AdressBook.Services
                         var newPerson = new Person();
 
                         Console.Write("First:");
-                        newPerson.FirstName=Console.ReadLine();
+                        newPerson.FirstName=Console.ReadLine() ?? "";
                         Console.Write("Last:");
-                        newPerson.LastName = Console.ReadLine();
+                        newPerson.LastName = Console.ReadLine() ?? "";
                         Console.Write("Email:");
-                        newPerson.Email = Console.ReadLine();
+                        newPerson.Email = Console.ReadLine() ?? "";
                         Console.Write("Street:");
-                        newPerson.StreetName = Console.ReadLine();
+                        newPerson.StreetName = Console.ReadLine() ?? "";
                         Console.Write("Num:");
-                        newPerson.StreetNumber = int.Parse(Console.ReadLine());
+                        newPerson.StreetNumber = int.Parse(Console.ReadLine())  ;
                         Console.Write("Phone:");
                         newPerson.PhoneNumber = int.Parse(Console.ReadLine());
                         Console.Write("City:");
-                        newPerson.City = Console.ReadLine();
+                        newPerson.City = Console.ReadLine() ?? "";
                         
                         listService.AddPerson(newPerson);
 
