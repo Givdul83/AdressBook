@@ -13,13 +13,13 @@ namespace AdressBook.Models
 
         public string LastName { get; set; } = null!;
 
-        public int PhoneNumber { get; set; } = 0!;
+        public int PhoneNumber { get; set; }
 
         public string Email { get; set; } = null!;
 
         public string StreetName { get; set; } = null!;
 
-        public int StreetNumber { get; set; } = 0;
+        public int StreetNumber { get; set; }
 
         public string City { get; set; } = null!;
     }
